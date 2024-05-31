@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar';
 import Home from './Home';
 import CreateNote from './CreateNote';
@@ -32,23 +32,13 @@ const App = () => {
       <div className="App">
         <Navbar collections={collections}/>
         <div className="content">
-          <Switch>
-            <Route exact path="/">
-              <Home/>
-            </Route>
-            <Route path="/createNote">
-              <CreateNote collections={collections}/>
-            </Route>
-            <Route path="/createCollection">
-              <CreateCollection/>
-            </Route>
-            <Route path="/collection/:id">
-              <CollectionDetails/>
-            </Route>
-            <Route path="/note/:id">
-              <NoteDetails/>
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>
+            <Route path="/createNote" element={<CreateNote collections={collections}/>}/>
+            <Route path="/createCollection" element={<CreateCollection/>}/>
+            <Route path="/collection/:id" element={<CollectionDetails/>}/>
+            <Route path="/note/:id" element={<NoteDetails/>}/>
+          </Routes>
         </div>
       </div>
     </Router>

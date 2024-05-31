@@ -15,8 +15,7 @@ const Navbar = ({ collections }) => {
                     color: 'white',
                     backgroundColor: '#f1356d',
                     borderRadius: '8px'
-                }}>New Collection
-                </Link>
+                }}>New Collection</Link>
             </div>
         </nav>
     );

@@ -33,6 +33,11 @@ app.get('/data', async (req, res) => {
     res.json({collection_data});
 });
 
+app.get('/notes', async (req, res) => {
+    const notes = await db.all("SELECT * FROM note ORDER BY title");
+    res.json({notes});
+});
+
 app.post('/addCollection', async (req, res) => {
     const result = await db.run('INSERT INTO collection (collection_name) VALUES (?)', [req.body.collection_name]);
     res.json({lastID: result.lastID});

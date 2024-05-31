@@ -17,12 +17,12 @@ const CollectionList = ({ collections, onDeleteCollection }) => {
   return (
     <div className="collection-list">
       {collections.map(collection => (
-        <div className="collection-preview list-group" key={collection.id} >
+        <div className="list-group" key={collection.id} >
           <div className="list-group-item list-row">
-            <Link className="list-link" to={`/collection/${collection.id}`}>
+            <Link className="list-link" state={{collection: collection}} to={`/collection/${collection.id}`}>
               <h2>{ collection.collection_name }</h2>
             </Link>
-            <button id={collection.id} onClick={() => handleDeleteCollection(collection.id)} className="list-delete">Delete</button>
+            <button onClick={() => handleDeleteCollection(collection.id)} className="list-delete">Delete</button>
           </div>
         </div>
       ))}

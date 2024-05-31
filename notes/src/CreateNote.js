@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 
 
 const CreateNote = ({ collections }) => {
   console.log("loading createNote");
+
+  const navigate = useNavigate();
   
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -27,14 +29,19 @@ const CreateNote = ({ collections }) => {
     }
 
     try {
-      await axios.post('http://localhost:8080/addNote', {
+      const response = await axios.post('http://localhost:8080/addNote', {
         title: title,
         text: body,
         date: currentDate,
         collection_id: collectionID,
         priority: priority
       });
-      window.location.href = `/collection/${collectionID}`;
+      let collection = collections.find(collection => collectionID === collection.id);
+      const new_note_id = response.data.lastID;
+      const new_note = {id: new_note_id, title: title, text: body, date: currentDate, collection_id: collectionID, priority: priority};
+      collection.notes.push(new_note);
+      navigate(`/collection/${collectionID}`, {state: {collection: collection}});
+
     } catch (error) {
       console.log("Unable to add new note on server", error);
     }
