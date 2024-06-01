@@ -7,6 +7,7 @@ import NoteDetails from './NoteDetails';
 import CreateCollection from './CreateCollection';
 import { CollectionsProvider } from './CollectionsContext';
 import EditNote from './EditNote';
+import EditCollection from './EditCollection';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
               <Route path="/collection/:id" element={<CollectionDetails />}/>
               <Route path="/note/:id" element={<NoteDetails />}/>
               <Route path="/editNote/:id" element={<EditNote />}/>
+              <Route path="/editCollection/:id" element={<EditCollection />} />
             </Routes>
           </div>
         </div>

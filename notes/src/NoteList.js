@@ -27,7 +27,7 @@ const NoteList = ({ notes, collection }) => {
                 <Link className="list-link" to={`/note/${note.id}`} state={{note: note, collection: collection}}>
                     <h2>{note.title}</h2>
                 </Link>
-                <button onClick={() => handleDeleteNoteServer(note.id)} className="list-delete">Delete</button>
+                <button onClick={() => handleDeleteNoteServer(note.id)} className="list-button">Delete</button>
               </div>
             )))}
         </div>

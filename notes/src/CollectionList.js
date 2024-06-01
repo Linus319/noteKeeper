@@ -26,7 +26,10 @@ const CollectionList = () => {
             <Link className="list-link" state={{collection: collection}} to={`/collection/${collection.id}`}>
               <h2>{ collection.collection_name }</h2>
             </Link>
-            <button onClick={() => handleDeleteCollectionServer(collection.id)} className="list-delete">Delete</button>
+            <Link to={`/editCollection/${collection.id}`} state={{ collection: collection}}>
+              <button className='list-button'>Edit</button>
+            </Link>
+            <button onClick={() => handleDeleteCollectionServer(collection.id)} className="list-button">Delete</button>
           </div>
         </div>
       ))}
