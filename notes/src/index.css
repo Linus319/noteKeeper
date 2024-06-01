@@ -124,3 +124,64 @@
   padding: 5px 10px;
   cursor: pointer
 }
+
+.list-delete:hover {
+  background-color: #ba2955;
+}
+
+/* note-details css */
+.note-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-title {
+  font-size: 1.5em;
+  margin: 0;
+  color: #333;
+}
+
+.edit-button {
+  padding: 5px 10px;
+  background-color: #f1356d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #ba2955;
+}
+
+.note-body p {
+  margin: 10px 0;
+}
+
+.note-body p strong {
+  color: #555;
+}
+
+.back-to-collection {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1356d;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.back-to-collection:hover {
+  background-color: #ba2955;
+}
