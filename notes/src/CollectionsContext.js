@@ -31,8 +31,18 @@ export const CollectionsProvider = ({ children }) => {
         setCollections(prevCollections => prevCollections.filter(collection => collection.id !== id));
     };
 
+    const handleAddNote = (note) => {
+        setCollections(prevCollections =>
+            prevCollections.map(collection =>
+                collection.id === note.collection_id
+                ? { ...collection, notes: [...collection.notes, note] }
+                : collection
+            )
+        );
+    };
+
     return (
-        <CollectionsContext.Provider value={{ collections, handleDeleteNote, handleDeleteCollection }}>
+        <CollectionsContext.Provider value={{ collections, handleDeleteNote, handleDeleteCollection, handleAddNote }}>
             { children }
         </CollectionsContext.Provider>
     );

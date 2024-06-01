@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import CollectionsContext from "./CollectionsContext";
 
-const Navbar = ({ collections }) => {
+const Navbar = () => {
+
+    const { collections } = useContext(CollectionsContext);
+
     return (
         <nav className="navbar">
             <h1>NoteKeeper</h1>
             <div className="links">
                 <Link to='/'>Home</Link>
-                <Link to='/CreateNote' collections={collections} style={{ 
+                <Link to='/CreateNote' state={{ collections }} style={{ 
                     color: 'white', 
                     backgroundColor: '#f1356d',
                     borderRadius: '8px' 

@@ -1,26 +1,22 @@
 import { useParams } from 'react-router-dom';
 import NoteList from './NoteList';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import CollectionsContext from "./CollectionsContext";
 
 const CollectionDetails = () => {
   console.log("loading collection details");
 
   const { id } = useParams();
-  const { collections } = useContext(CollectionsContext);
-  const [collection, setCollection] = useState(null);
+  const { collections, handleDeleteNote } = useContext(CollectionsContext);
 
-  useEffect(() => {
-    const foundCollection = collections.find(col => col.id === parseInt(id));
-    setCollection(foundCollection);
-  }, [collections, id]);
+  const currentCollection = collections.find(collection => collection.id === parseInt(id));
   
   return (
     <div className="collection-details">
-      {collection && (
+      {currentCollection && (
         <div>
-          <h2>{ collection.collection_name }</h2>
-          <NoteList collection={collection} notes={collection.notes} />
+          <h2>{ currentCollection.collection_name }</h2>
+          <NoteList collection={currentCollection} notes={currentCollection.notes} onDeleteNote={handleDeleteNote} />
         </div>
       )}
     </div>

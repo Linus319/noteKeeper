@@ -9,7 +9,7 @@ const CreateNote = () => {
 
   const navigate = useNavigate();
 
-  const { collections } = useContext(CollectionsContext);
+  const { collections, handleAddNote } = useContext(CollectionsContext);
   
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -23,7 +23,7 @@ const CreateNote = () => {
   const day = today.getDate();
   const currentDate = month + "/" + day + "/" + year;
 
-  const handleAddNote = async (e) => {
+  const handleAddNoteSubmit = async (e) => {
     e.preventDefault();
 
     if (collectionID === -1) {
@@ -39,11 +39,10 @@ const CreateNote = () => {
         collection_id: collectionID,
         priority: priority
       });
-      let collection = collections.find(collection => collectionID === collection.id);
       const new_note_id = response.data.lastID;
       const new_note = {id: new_note_id, title: title, text: body, date: currentDate, collection_id: collectionID, priority: priority};
-      collection.notes.push(new_note);
-      navigate(`/collection/${collectionID}`, {state: {collection: collection}});
+      handleAddNote(new_note);
+      navigate(`/collection/${collectionID}`);
 
     } catch (error) {
       console.log("Unable to add new note on server", error);
@@ -53,7 +52,7 @@ const CreateNote = () => {
   return (
     <div className="create">
       <h2>Add a New Note</h2>
-      <form onSubmit={handleAddNote}>
+      <form onSubmit={handleAddNoteSubmit}>
         <label>Note Title:</label>
         <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}/>
 
