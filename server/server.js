@@ -78,4 +78,9 @@ app.post('/deleteNote', async (req, res) => {
     res.send();
 });
 
+app.post('/editNote', async (req, res) => {
+    await db.run("UPDATE note SET title = ?, text = ?, date = ?, priority = ? WHERE id = ?", [req.body.title, req.body.text, req.body.date, req.body.priority, req.body.id]);
+    res.send();
+})
+
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

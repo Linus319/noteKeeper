@@ -41,8 +41,21 @@ export const CollectionsProvider = ({ children }) => {
         );
     };
 
+    const handleEditNote = (newNote) => {
+        console.log("edit note handler");
+        console.log(newNote);
+        setCollections(prevCollections =>
+            prevCollections.map(collection => ({
+                ...collection,
+                notes: collection.notes.map(note =>
+                    note.id === newNote.id ? newNote: note
+                )
+            }))
+        );
+    };
+
     return (
-        <CollectionsContext.Provider value={{ collections, handleDeleteNote, handleDeleteCollection, handleAddNote }}>
+        <CollectionsContext.Provider value={{ collections, handleDeleteNote, handleDeleteCollection, handleAddNote, handleEditNote }}>
             { children }
         </CollectionsContext.Provider>
     );

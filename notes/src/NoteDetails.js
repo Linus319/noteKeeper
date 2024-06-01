@@ -12,7 +12,10 @@ const NoteDetails = () => {
                 <div className="note-details container">
                     <div className='note-header'>
                         <h2 className='note-title'>{note.title}</h2>
-                        <button className='edit-button'>Edit</button>
+                        <Link to={`/editNote/${note.id}`} state={{note: note}}>
+                            <button className='edit-button'>Edit</button>
+                        </Link>
+                        
                     </div>
                     
                     <div className="note-body">
