@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import CollectionsContext from './CollectionsContext';
+import { useContext } from 'react';
 
-const NoteList = ({ notes, collection, onDeleteNote }) => {
+const NoteList = ({ notes, collection }) => {
     console.log("loading notelist");
 
-    const handleDeleteNote = (noteID) => {
+    const { handleDeleteNote } = useContext(CollectionsContext);
+
+
+    const handleDeleteNoteServer = (noteID) => {
         axios.post("http://localhost:8080/deleteNote", {
             id: noteID
         }).then(() => {
-            onDeleteNote(noteID);
+            handleDeleteNote(noteID);
         }).catch((error) => {
             console.log("Unable to delete note from server", error);
         });
@@ -22,7 +27,7 @@ const NoteList = ({ notes, collection, onDeleteNote }) => {
                 <Link className="list-link" to={`/note/${note.id}`} state={{note: note, collection: collection}}>
                     <h2>{note.title}</h2>
                 </Link>
-                <button onClick={() => handleDeleteNote(note.id)} className="list-delete">Delete</button>
+                <button onClick={() => handleDeleteNoteServer(note.id)} className="list-delete">Delete</button>
               </div>
             )))}
         </div>

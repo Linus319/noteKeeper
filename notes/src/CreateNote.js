@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import CollectionsContext from './CollectionsContext';
 
 
-const CreateNote = ({ collections }) => {
+const CreateNote = () => {
   console.log("loading createNote");
 
   const navigate = useNavigate();
+
+  const { collections } = useContext(CollectionsContext);
   
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');

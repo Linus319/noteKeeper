@@ -1,14 +1,18 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useContext } from 'react';
+import CollectionsContext from './CollectionsContext';
 
-const CollectionList = ({ collections, onDeleteCollection }) => {
+const CollectionList = () => {
+  console.log("loading collectionList");
 
-  const handleDeleteCollection = async (id) => {
-    console.log("deleting id:", id);
+  const { collections, handleDeleteCollection } = useContext(CollectionsContext);
+
+  const handleDeleteCollectionServer = async (id) => {
     await axios.post("http://localhost:8080/deleteCollection", {
       id: id
     }).then(() => {
-      onDeleteCollection(id);
+      handleDeleteCollection(id);
     }).catch((error) => {
       console.log("Unable to delete collection on server", error);
     });
@@ -22,7 +26,7 @@ const CollectionList = ({ collections, onDeleteCollection }) => {
             <Link className="list-link" state={{collection: collection}} to={`/collection/${collection.id}`}>
               <h2>{ collection.collection_name }</h2>
             </Link>
-            <button onClick={() => handleDeleteCollection(collection.id)} className="list-delete">Delete</button>
+            <button onClick={() => handleDeleteCollectionServer(collection.id)} className="list-delete">Delete</button>
           </div>
         </div>
       ))}
